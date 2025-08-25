@@ -2,6 +2,8 @@
 ## INFO: https://docs.docker.com/engine/install/ubuntu/
 
 set -euf -o pipefail
+PS4='>>> '
+set -x
 
 # Install dependencies
 sudo apt update && sudo apt install -y \
