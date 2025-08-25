@@ -3,8 +3,11 @@
 
 set -euf -o pipefail
 
+DOCKER_USER=ubuntu
+
 # Install dependencies
-sudo apt update && sudo apt install -y \
+sudo apt-get update && sudo apt-get install -y \
+  apt-transport-https \
   ca-certificates \
   curl \
   gnupg \
@@ -19,4 +22,7 @@ echo \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 # Install Docker CE
-sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io
+sudo apt-get update && sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+
+# Use Docker without root
+sudo usermod -aG docker $DOCKER_USER
